@@ -6,7 +6,7 @@
 /*   By: aennaki <aennaki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 22:23:57 by aennaki           #+#    #+#             */
-/*   Updated: 2023/03/13 18:43:08 by aennaki          ###   ########.fr       */
+/*   Updated: 2023/04/29 22:48:26 by aennaki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,11 @@ int	nbrabs(int nbr)
 
 void	move(t_list **a, t_list **b, int cost_a, int cost_b)
 {
+	// if (cost_a * cost_b > 0)
+	// {
+	// 	rev_rotate_cost(a, b, &cost_a, &cost_b);
+	// 	rotate_cost(a, b, &cost_a, &cost_b);
+	// } 
 	if (cost_a < 0 && cost_b < 0)
 		rev_rotate_cost(a, b, &cost_a, &cost_b);
 	else if (cost_a > 0 && cost_b > 0)
@@ -54,6 +59,17 @@ void	move(t_list **a, t_list **b, int cost_a, int cost_b)
 	rotate_st_cost(a, 'a', &cost_a);
 	rotate_st_cost(b, 'b', &cost_b);
 	push_a(a, b, 1);
+}
+
+int	nbr_moves(int cost_a, int cost_b)
+{
+	if (cost_a * cost_b > 0)
+	{
+		if (nbrabs(cost_a) > nbrabs(cost_b))
+			return (nbrabs(cost_a));
+		return (nbrabs(cost_b));
+	}
+	return (nbrabs(cost_a) + nbrabs(cost_b));
 }
 
 void	min_costmove(t_list **a, t_list **b)
@@ -67,9 +83,9 @@ void	min_costmove(t_list **a, t_list **b)
 	min = INT_MAX;
 	while (tmp)
 	{
-		if (nbrabs(tmp->cost_a) + nbrabs(tmp->cost_b) < nbrabs(min))
+		if (nbr_moves(tmp->cost_a, tmp->cost_b) < nbrabs(min))
 		{
-			min = nbrabs(tmp->cost_b) + nbrabs(tmp->cost_a);
+			min = nbr_moves(tmp->cost_a, tmp->cost_b);
 			cost_a = tmp->cost_a;
 			cost_b = tmp->cost_b;
 		}
