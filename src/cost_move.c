@@ -6,7 +6,7 @@
 /*   By: aennaki <aennaki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 22:23:57 by aennaki           #+#    #+#             */
-/*   Updated: 2023/04/29 22:48:26 by aennaki          ###   ########.fr       */
+/*   Updated: 2023/06/21 23:28:13 by aennaki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	set_cost(t_list **a, t_list **b)
 	{
 		btmp->cost_b = btmp->pos;
 		if (btmp->pos > lb / 2)
-			btmp->cost_b = (lb - btmp->pos) * -1;
+			btmp->cost_b = btmp->pos - lb;
 		btmp->cost_a = btmp->tpos;
 		if (btmp->tpos > la / 2)
-			btmp->cost_a = (la - btmp->tpos) * -1;
+			btmp->cost_a = btmp->tpos - la;
 		btmp = btmp->next;
 	}
 }
