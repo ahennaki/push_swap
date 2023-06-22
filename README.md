@@ -14,6 +14,7 @@ Especially focusing on their complexity.
 Sorting values is simple. To sort them the fastest way possible is less simple. Especially
 because from one integers configuration to another, the most efficient sorting solution can
 differ.
+
 # The rules
 
 • You have 2 stacks named a and b.
@@ -47,3 +48,49 @@ rra (reverse rotate a): Shift down all elements of stack a by 1. The last elemen
 rrb (reverse rotate b): Shift down all elements of stack b by 1. The last element becomes the first one.
 
 rrr : rra and rrb at the same time.
+
+# Implementation
+
+After parsing the elements enter as argument, they should be integers and not duplicated, we stock these elements in the stack a.
+
+        The stack a is a lincked list that contain:
+        typedef struct s_list
+        {
+        	int				content;
+        	int				index;
+        	int				pos;
+        	int				tpos;
+        	int				cost_a;
+        	int				cost_b;
+        	struct s_list	*next;
+        }	t_list;
+
+First, you have to index the elements, it will be like a sort of virtual sort each element takes its order as an index.
+
+        For example:
+            if we enter the elements: [1] [4] [5] [2] [8] [10] [3]
+            the indexes should be:     1   4   5   2   6   7    3
+
+The idea is to push the elements from stack a to the stack b except 3 elements. if the elements are more than 6 we are going to try to leave the 
+three of the largest elements, not necessarily the largest, but which will be their index bigger than size_a/2, if it is we do a rotate of a then we continue. And if there is 6 element or less we just leave the 3 last elements in stack.
+
+        For example:
+        1:  stack a: [1] [4] [5] [2] [8] [10] [3]
+            in stack a we have 7 elements, so we take the first element wich is [1] his index is 1 and 1 < size_a/2.
+            we push the element in the top of b.
+            stack b: [1]
+            stack a: [4] [5] [2] [8] [10] [3]
+            Now we have just 6 elements in the stack a so we push the three first elements to stck b. 
+            stack b: [2] [5] [4] [1]
+            stack a: [8] [10] [3]
+        2:  stack a: [10] [2] [3] [8] [4] [1] [5]
+            [10] his index is 7 and 7 > size_a/2
+            so we do "ra" then we continue.
+            stack a: [2] [3] [8] [4] [1] [5] [10]
+            [2] his index is 2 and 2 < size_a/2 so we push [2] in the top of b.
+            stack b: [2]
+            stack a: [3] [8] [4] [1] [5] [10]
+            Now we have just 6 elements in the stack a so we push the three first elements to stck b. 
+            stack b: [4] [8] [3] [2]
+            stack a: [1] [5] [10]
+
