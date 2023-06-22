@@ -6,7 +6,7 @@
 /*   By: aennaki <aennaki@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:32:41 by aennaki           #+#    #+#             */
-/*   Updated: 2023/06/21 23:25:34 by aennaki          ###   ########.fr       */
+/*   Updated: 2023/06/23 00:46:43 by aennaki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,28 +50,28 @@ int	min_index(t_list **lst)
 	return (p);
 }
 
-static int	get_tpos(t_list **a, int b_index, int i, int tpos)
+static int	get_tpos(t_list **a, int b_index, int max_i, int tpos)
 {
 	t_list	*tmp;
 
 	tmp = *a;
 	while (tmp)
 	{
-		if (tmp->index > b_index && tmp->index < i)
+		if (tmp->index > b_index && tmp->index < max_i)
 		{
-			i = tmp->index;
+			max_i = tmp->index;
 			tpos = tmp->pos;
 		}
 		tmp = tmp->next;
 	}
-	if (i != INT_MAX)
+	if (max_i != INT_MAX)
 		return (tpos);
 	tmp = *a;
 	while (tmp)
 	{
-		if (tmp->index < i)
+		if (tmp->index < max_i)
 		{
-			i = tmp->index;
+			max_i = tmp->index;
 			tpos = tmp->pos;
 		}
 		tmp = tmp->next;
