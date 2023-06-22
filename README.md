@@ -94,3 +94,46 @@ three of the largest elements, not necessarily the largest, but which will be th
             stack b: [4] [8] [3] [2]
             stack a: [1] [5] [10]
 
+After sorting the three elements of the stack a:
+
+Set of pos and t_pos.
+        
+        pos: we index the elements from 0 to size_stack - 1.
+        t_pos: each element in stack b take the pos in were we should put him in the stack a to make them in order.
+
+Example for seting t_pos:
+
+        There is a lot of cases, we can set:
+        
+        stack b: [3]
+        index:    3
+        pos:      0
+        stack b: [1] [2] [4]
+        index:    1   2   4
+        pos:      0   1   2
+        We have to push [3] from b to a but it should be pushed befor [4] for that the t_pos should set at 2.
+
+        stack b: [1]
+        index:    1
+        pos:      0
+        stack b: [2] [3] [4]
+        index:    2   3   4
+        pos:      0   1   2
+        the t_pos of [1] should be 0.
+        
+        stack b: [4]
+        index:    4
+        pos:      0
+        stack b: [1] [2] [3]
+        index:    1   2   3
+        pos:      0   1   2
+        The t_pos of [4] should be 0 because stack a is sorted and [4] is bigger than the element in the bottom so we can push [4] in the top and do ra to sort the stack
+
+        stack b: [5]
+        index:    5
+        pos:      0
+        stack b: [4] [1] [2] [3]
+        index:    4   1   2   3
+        pos:      0   1   2   3
+        The t_pos of [5] should be 1 after [4] and befor [1].
+        
