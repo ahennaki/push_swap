@@ -137,3 +137,4 @@ Example for seting t_pos:
         pos:      0   1   2   3
         The t_pos of [5] should be 1 after [4] and befor [1].
         
+After that we set the costs (cost_a and cost_b) wich means how much of movements that cost me to move the element in the exact location from the stack b to the stack b, cost_a its for the movement that we have to do in stack a and cost_b is for the stack b.
