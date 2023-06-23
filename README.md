@@ -138,3 +138,35 @@ Example for seting t_pos:
         The t_pos of [5] should be 1 after [4] and befor [1].
         
 After that we set the costs (cost_a and cost_b) wich means how much of movements that cost me to move the element in the exact location from the stack b to the stack b, cost_a its for the movement that we have to do in stack a and cost_b is for the stack b.
+        
+        For cost_b, to push an element from stack b to stack a the element should be in the top of stack so the operations that we can do are ra or rra.
+        How we can knew the best operation?
+        If the pos of the element is <= size_stack/2, the best operation is ra. (in this case the cost should be positive).
+        If the pos of the element is > size_stack/2, the best operation is rra. (in this case the cost should be negative).
+
+        Example:
+
+        stack b: [3]
+        index:    3
+        pos:      0
+        t_pos:    2
+        stack b: [1] [2] [4]
+        index:    1   2   4
+        pos:      0   1   2
+        To calculate the costs of [3]:
+        The cost_b: we have only the element [3] in the stack b so the cost_b should be set as 0.
+        The cost_a: t_pos of [3] is 2 so we have to put him befor [4] that have the pos 2. To do that we should put [4] in the top of the stack a,
+        we should do one rra, so the cost_a should set as -1.
+
+        stack b: [3] [5]
+        index:    3   5
+        pos:      0   1
+        t_pos:    2   0
+        stack b: [1] [2] [4]
+        index:    1   2   4
+        pos:      0   1   2
+        For [3] cost_a = -1 and cost_b = 0 nothing changed.
+        For [5]:
+        cost_b: the pos of [5] is 1 in the stack_b, to make it in the top we hwve to do one ra, so the cost_b should be set as 1.
+        cost_a: the t_pos of [5] is 0, we can push in the top without doing any move in stack a, so the cost_a should set as 0.
+        
