@@ -15,7 +15,7 @@ Sorting values is simple. To sort them the fastest way possible is less simple. 
 because from one integers configuration to another, the most efficient sorting solution can
 differ.
 
-# The rules
+## The rules
 
 • You have 2 stacks named a and b.
 
@@ -49,7 +49,7 @@ rrb (reverse rotate b): Shift down all elements of stack b by 1. The last elemen
 
 rrr : rra and rrb at the same time.
 
-# Test
+## Test
 
         $>make
 
@@ -69,7 +69,7 @@ rrr : rra and rrb at the same time.
 
         $>ARG=$(ruby -e "puts (-1000..1000).to_a.sample(500).join(' ')") && ./push_swap $ARG | wc -l
 
-# BONUS: The "checker" program
+## BONUS: The "checker" program
 
 • Write a program named checker that takes as an argument the stack a formatted as a list of integers. The first argument should be at the top of the stack (be careful about the order). If no argument is given, it stops and displays nothing.
 
